@@ -1,0 +1,34 @@
+name: Build IPXBOX
+on: [push]
+
+jobs:
+  build-image:
+    name: Build image without Containerfile
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        base-image: docker.io/arm64v8/alpine
+        image: ipxbox-arm64
+        tags: v1
+        content: |
+          target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar
+        entrypoint: entrypoint.sh
+        port: 213
+
+    - name: Log in to GitHub container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push container
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
+          platforms: linux/arm64
