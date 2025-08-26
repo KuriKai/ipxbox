@@ -1,5 +1,6 @@
 name: Build ARM64 Container
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -26,3 +27,4 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
           platforms: linux/arm64
+          
