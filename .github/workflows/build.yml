@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
       - uses: actions/checkout@v4
       
       - name: Set up Docker Buildx
@@ -19,12 +20,14 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.IPXBOX_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}
+          
+      - name: Build Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}/ipxbox:latest . 
           
       - name: Build and push container
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ghcr.io/${{ github.repository }}:latest
-          platforms: linux/arm64
+        run: |
+          docker push ghcr.io/${{ github.repository }}/ipxbox:latest
+          #platforms: linux/arm64
           
