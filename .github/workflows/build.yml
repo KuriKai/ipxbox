@@ -24,10 +24,10 @@ jobs:
           
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/ipxbox:latest . 
+          docker build -t ghcr.io/kurikai/ipxbox/ipxbox:latest . 
           
       - name: Build and push container
         run: |
-          docker push ghcr.io/${{ github.repository }}/ipxbox:latest
+          docker push ghcr.io/kurikai/ipxbox/ipxbox:latest
           #platforms: linux/arm64
           
