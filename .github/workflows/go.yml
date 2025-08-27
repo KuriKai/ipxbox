@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Build arm64container
 
 #on: [push, pull_request, workflow_dispatch]
 on: [workflow_dispatch]
