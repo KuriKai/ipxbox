@@ -11,4 +11,4 @@ COPY output/ipxbox /root/go/bin/ipxbox
 #COPY artifacts2/ipxbox /root/go/bin/ipxbox
 #RUN /bin/sh -c apk update
 #RUN /bin/sh -c apk add libpcap
-#CMD ["/root/go/bin/ipxbox" "--port=213"]
+ENTRYPOINT ["/root/go/bin/ipxbox" "--port=213"]
