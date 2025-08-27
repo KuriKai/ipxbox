@@ -102,7 +102,7 @@ jobs:
         echo "ARTIFACTS LS2"
         ls artifacts2
         echo ""
-        cp artifacts2/ipxbox ipxbox
+        cp artifacts/ipxbox ipxbox
         docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest /home/runner/work/ipxbox/ipxbox 
         
     - name: Build and push container
