@@ -62,20 +62,20 @@ jobs:
         ls ./
         cd ..
         pwd
-      env:
-        GOARCH: ${{ matrix.goarch }}
-        GOOS: ${{ matrix.goos }}
+      #env:
+      #  GOARCH: ${{ matrix.goarch }}
+      #  GOOS: ${{ matrix.goos }}
 
     # Github packages artifacts in .zip files which don't preserve
     # permissions, so we must make an inner tar. Sigh.
-    #- name: Tar artifacts
-    #  run: |
-    #    mv artifacts artifacts2
-    #    mkdir artifacts
-    #    tar -C artifacts2 -czf artifacts/contents.tar.gz .
-    #    pwd
-    #    ls ./
-    #  if: ${{ matrix.goos != 'windows' }}
+    - name: Tar artifacts
+      run: |
+        mv artifacts artifacts2
+        mkdir artifacts
+        tar -C artifacts2 -czf artifacts/contents.tar.gz .
+        pwd
+        ls ./
+      if: ${{ matrix.goos != 'windows' }}
 
     #- name: Upload build
     #  uses: actions/upload-artifact@v4
@@ -98,14 +98,10 @@ jobs:
     - name: Build Docker image
       run: |
         pwd
-     #   #ipxbox is in the artifacts2 folder
-     #   ls output
-     #   echo ""
-     #   ls
-        docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest /home/runner/work/ipxbox/ipxbox
+        docker buildx build --push --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest .
 
-    - name: Build and push container
-      run: |
-        docker push ghcr.io/kurikai/ipxbox/ipxbox:latest
-        #platforms: linux/arm64
+    #- name: Build and push container
+    #  run: |
+    #    docker push ghcr.io/kurikai/ipxbox/ipxbox:latest
+    #    #platforms: linux/arm64
 
