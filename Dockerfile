@@ -5,7 +5,8 @@ RUN pwd --no-cache
 WORKDIR /
 RUN pwd --no-cache
 RUN ls
-COPY /home/runner/work/ipxbox/ipxbox/artifacts/ipxbox /root/go/bin/ipxbox
+#COPY /home/runner/work/ipxbox/ipxbox/artifacts/ipxbox /root/go/bin/ipxbox
+COPY artifacts/ipxbox /root/go/bin/ipxbox
 RUN /bin/sh -c apk update
 RUN /bin/sh -c apk add libpcap
 CMD ["/root/go/bin/ipxbox" "--port=213"]
