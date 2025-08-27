@@ -51,8 +51,8 @@ jobs:
 
     - name: Build
       run: |
-        mkdir artifacts
-        cd artifacts
+        mkdir output
+        cd output
         go build -tags nopcap -v ../ipxbox.go
         go build -tags nopcap -v ../standalone/ipxbox_uplink.go
         go build -tags nopcap -v ../standalone/standalone_ipxpkt.go
@@ -66,20 +66,20 @@ jobs:
 
     # Github packages artifacts in .zip files which don't preserve
     # permissions, so we must make an inner tar. Sigh.
-    - name: Tar artifacts
-      run: |
-        mv artifacts artifacts2
-        mkdir artifacts
-        tar -C artifacts2 -czf artifacts/contents.tar.gz .
-        pwd
-        ls ./
-      if: ${{ matrix.goos != 'windows' }}
+    #- name: Tar artifacts
+    #  run: |
+    #    mv artifacts artifacts2
+    #    mkdir artifacts
+    #    tar -C artifacts2 -czf artifacts/contents.tar.gz .
+    #    pwd
+    #    ls ./
+    #  if: ${{ matrix.goos != 'windows' }}
 
-    - name: Upload build
-      uses: actions/upload-artifact@v4
-      with:
-        path: "artifacts"
-        name: ipxbox_${{ matrix.goos }}_${{ matrix.goarch }}
+    #- name: Upload build
+    #  uses: actions/upload-artifact@v4
+    #  with:
+    #    path: "artifacts"
+    #    name: ipxbox_${{ matrix.goos }}_${{ matrix.goarch }}
 
     #- name: Checkout repository
       #uses: actions/checkout@v4
@@ -96,12 +96,12 @@ jobs:
          
     - name: Build Docker image
       run: |
-        pwd
-        #ipxbox is in the artifacts2 folder
-        ls artifacts2
-        echo ""
-        cp artifacts2/ipxbox ipxbox
-        ls
+     #   pwd
+     #   #ipxbox is in the artifacts2 folder
+     #   ls artifacts2
+     #   echo ""
+     #   cp artifacts2/ipxbox ipxbox
+     #   ls
         docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest /home/runner/work/ipxbox/ipxbox 
         
     - name: Build and push container
