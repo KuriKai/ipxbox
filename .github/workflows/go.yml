@@ -97,12 +97,10 @@ jobs:
     - name: Build Docker image
       run: |
         pwd
-        echo "ARTIFACTS LS"
-        ls artifacts
-        echo "ARTIFACTS LS2"
+        #ipxbox is in the artifacts2 folder
         ls artifacts2
         echo ""
-        cp artifacts/ipxbox ipxbox
+        cp artifacts2/ipxbox ipxbox
         docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest /home/runner/work/ipxbox/ipxbox 
         
     - name: Build and push container
