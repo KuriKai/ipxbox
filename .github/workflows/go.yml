@@ -58,6 +58,8 @@ jobs:
         go build -tags nopcap -v ../standalone/standalone_ipxpkt.go
         go build -tags nopcap -v ../standalone/standalone_pptp.go
         go build -tags nopcap -v ../standalone/standalone_qproxy.go
+        pwd
+        ls ./
       env:
         GOARCH: ${{ matrix.goarch }}
         GOOS: ${{ matrix.goos }}
