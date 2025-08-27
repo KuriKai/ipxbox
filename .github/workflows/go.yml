@@ -103,6 +103,9 @@ jobs:
         ls artifacts
         echo ""
         ls artifacts2
+        cd artifacts2
+        pwd
+        ls
         docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest . 
         
     - name: Build and push container
