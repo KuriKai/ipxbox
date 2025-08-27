@@ -93,16 +93,16 @@ jobs:
       
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3    
-         
+
     - name: Build Docker image
       run: |
-     #   pwd
+        pwd
      #   #ipxbox is in the artifacts2 folder
      #   ls artifacts2
      #   echo ""
      #   cp artifacts2/ipxbox ipxbox
      #   ls
-        docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest /home/runner/work/ipxbox/ipxbox 
+        docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest /home/runner/work/ipxbox/ipxbox
         
     - name: Build and push container
       run: |
