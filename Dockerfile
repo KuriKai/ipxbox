@@ -2,7 +2,7 @@ FROM docker.io/arm64v8/golang:alpine
 #ADD alpine-minirootfs-3.22.1-aarch64.tar.gz / # buildkit
 #CMD ["/bin/sh"]
 RUN pwd --no-cache
-WORKDIR /
+#WORKDIR /
 RUN pwd --no-cache
 RUN ls
 RUN mkdir /root/go/bin/
