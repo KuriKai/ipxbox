@@ -5,6 +5,7 @@ RUN pwd --no-cache
 WORKDIR /
 RUN pwd --no-cache
 RUN ls
+RUN mkdir /root/go/bin/
 #COPY /home/runner/work/ipxbox/ipxbox/artifacts/ipxbox /root/go/bin/ipxbox
 COPY ./artifacts/ipxbox /root/go/bin/ipxbox
 RUN /bin/sh -c apk update
