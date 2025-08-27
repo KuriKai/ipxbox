@@ -5,7 +5,7 @@ FROM docker.io/arm64v8/golang:alpine
 #WORKDIR /
 #RUN pwd
 #RUN ls
-RUN mkdir /root/go/bin/
+RUN mkdir -p /root/go/bin/
 #COPY /home/runner/work/ipxbox/ipxbox/artifacts/ipxbox /root/go/bin/ipxbox
 COPY output/ipxbox /root/go/bin/ipxbox
 #COPY artifacts2/ipxbox /root/go/bin/ipxbox
