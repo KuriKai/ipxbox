@@ -97,12 +97,13 @@ jobs:
     - name: Build Docker image
       run: |
         pwd
-        echo ""
-        ls ./
-        echo ""
+        echo "ARTIFACTS LS"
         ls artifacts
+        echo "ARTIFACTS LS2"
+        ls artifacts2
         echo ""
-        docker buildx build --platform linux/arm64 --file Dockerfile -t ghcr.io/kurikai/ipxbox/ipxbox:latest . 
+        cp artifacts2/ipxbox ipxbox
+        docker buildx build --platform linux/arm64 -t ghcr.io/kurikai/ipxbox/ipxbox:latest /home/runner/work/ipxbox/ipxbox 
         
     - name: Build and push container
       run: |
