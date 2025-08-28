@@ -62,9 +62,9 @@ jobs:
         ls ./
         cd ..
         pwd
-      #env:
-      #  GOARCH: ${{ matrix.goarch }}
-      #  GOOS: ${{ matrix.goos }}
+      env:
+        GOARCH: ${{ matrix.goarch }}
+        GOOS: ${{ matrix.goos }}
 
     # Github packages artifacts in .zip files which don't preserve
     # permissions, so we must make an inner tar. Sigh.
