@@ -1,4 +1,4 @@
-FROM docker.io/arm64v8/golang:alpine
+FROM docker.io/arm64v8/ubuntu:latest
 #ADD alpine-minirootfs-3.22.1-aarch64.tar.gz / # buildkit
 #CMD ["/bin/sh"]
 #RUN pwd
